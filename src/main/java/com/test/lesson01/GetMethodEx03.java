@@ -13,6 +13,7 @@ public class GetMethodEx03 extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//Stash 테스트용 주석 추가
 		//테스트용 주석 추가 (28 05 2024)
 		
 		//Get 형식으로 받아오는 Request를 처리하겠다는 뜻
