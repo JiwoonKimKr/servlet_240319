@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>날짜/시간 링크</title>
+	<title>Quiz02</title>
 	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -15,11 +15,9 @@
 	<div class="container">
 		<header><h1>날짜, 시간 링크</h1></header>
 		<div class="mt-4">
-			<a class="btn btn-info" href="/lesson02/quiz02_1.jsp?detailSelected=time" role="button">현재 시간 확인</a>
-			<a class="btn btn-success" href="/lesson02/quiz02_1.jsp?detailSelected=date" role="button">현재 날짜 확인</a>
+			<a class="btn btn-info" href="/lesson02/quiz02_1.jsp?type=time" role="button">현재 시간 확인</a>
+			<a class="btn btn-success" href="/lesson02/quiz02_1.jsp?type=date" role="button">현재 날짜 확인</a>
 		</div>
-
 	</div>
-
 </body>
 </html>

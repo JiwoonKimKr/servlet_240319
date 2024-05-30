@@ -16,7 +16,6 @@
 	<div class="container">
 		<h2>길이 변환 결과</h2>
 		<%
-		//http://localhost/lesson02/quiz04.jsp?number=24&checkInch=on&checkYard=on&checkFeet=on&checkMeter=on
 			String strNum = request.getParameter("number");
 			if(strNum.matches("[+-]?\\d*(\\.\\d+)?") == false){
 				response.sendRedirect("/lesson02/quiz04.jsp");
@@ -29,53 +28,33 @@
 		<hr>
 		
 		<%
-			boolean hasInchChecked = false;
-			if(request.getParameter("checkInch") != null && request.getParameter("checkInch").equals("on")){
-				hasInchChecked = true;		
-			}
-			boolean hasYardChecked = false;
-			if(request.getParameter("checkYard") != null && request.getParameter("checkYard").equals("on")){
-				hasYardChecked = true;		
-			}
-			boolean hasFeetChecked = false;
-			if(request.getParameter("checkFeet") != null && request.getParameter("checkFeet").equals("on")){
-				hasFeetChecked = true;		
-			}
-			boolean hasMeterChecked = false;
-			if(request.getParameter("checkMeter") != null && request.getParameter("checkMeter").equals("on")){
-				hasMeterChecked = true;		
+			String[] arrStUnit = request.getParameterValues("standardUnit");
+
+			if(arrStUnit == null){
+				response.sendRedirect("/lesson02/quiz04.jsp");
+		    	return;
 			}
 			
-			double inch = (double) number / 2.54;
-			double yard = (double) number / 0.9144 / 100;
-			double feet = (double) number / 0.3048 / 100;
-			double meter = (double) number / 100;
+			for(String unit: arrStUnit){
+				if(unit.equals("inch")){
+					double inch = (double) number / 2.54;
+					out.print("<h3>" + inch + " in" + "</h3>");
+				}
+				if(unit.equals("yard")){
+					double yard = (double) number / 0.9144 / 100;
+					out.print("<h3>" + yard + " yd" + "</h3>");
+				}
+				if(unit.equals("feet")){
+					double feet = (double) number / 0.3048 / 100;
+					out.print("<h3>" + feet + " ft" + "</h3>");
+				}
+				if(unit.equals("meter")){
+					double meter = (double) number / 100;
+					out.print("<h3>" + meter + " m" + "</h3>");
+				}
+			}
 		%>
-		
-		<%
-			if(hasInchChecked){
-				%>
-				<%= ("<h3>" + inch + " in" + "</h3>") %> <%
-			}
-		%> 
-		<%
-			if(hasYardChecked){
-				%>
-				<%= ("<h3>" + yard + " yd" + "</h3>") %> <%
-			}
-		%> 
-		<%
-			if(hasFeetChecked){
-				%>
-				<%= ("<h3>" + feet + " ft" + "</h3>") %> <%
-			}
-		%> 
-		<%
-			if(hasMeterChecked){
-				%>
-				<%= ("<h3>" + meter + " m" + "</h3>") %> <%
-			}
-		%> 
+
 	</div>
 </body>
 </html>

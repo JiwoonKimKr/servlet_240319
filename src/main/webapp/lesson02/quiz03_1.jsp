@@ -15,37 +15,43 @@
 <body>
 	<div class="container">
 	<%
+		//request params 받아오기
 		String strHeight = request.getParameter("height");
 		String strWeight = request.getParameter("weight");
 	    
-	    if(strHeight.matches("[+-]?\\d*(\\.\\d+)?") == false || strWeight.matches("[+-]?\\d*(\\.\\d+)?") == false){
+	    if(strHeight == "" || strWeight == "" || strHeight.matches("[+-]?\\d*(\\.\\d+)?") == false || strWeight.matches("[+-]?\\d*(\\.\\d+)?") == false){
 	    	response.sendRedirect("/lesson02/quiz03.jsp");
 	    	return;
 	    }
 		
 		int height = Integer.parseInt(strHeight);
 		int weight = Integer.parseInt(strWeight);
+		//out.print(height + "<br>" + weight);
 		
-		double BMI = (double) weight / ((height / 100.0) * (height / 100.0));
+		//bmi 계산
+		double bmi = weight / ((height / 100.0) * (height / 100.0));
+		//out.print(bmi);
 		
-		String result = "";
+		String result = null;
 		
-		if (BMI < 20){
+		//bmi 따른 판정 결과 도출하기;
+		if (bmi <= 20){
 			result = "저체중";
-		} else if(BMI >= 20 && BMI <= 25){
+		} else if(bmi <= 25){ // 20.0~25
+			//어짜피 20보다 큰 애들만 오니까 암묵적으로 앞쪽 값을 지운다
 			result = "정상";
-		} else if(BMI >= 26 && BMI <= 30){
+		} else if(bmi <= 30){ // 25.0~30
 			result = "과체중";
-		} else {
+		} else { // 30.0~
 			result = "비만";
 		}
 		
 	%>
-	<h3>BMI 측정 결과</h3>
-	<h2>당신은 <span class="text-info"><%= result %></span>입니다.</h2>
-	<p class="mt-3">
-		BMI 수치: <%= BMI %>
-	</p>
+		<h3>BMI 측정 결과</h3>
+		<div class="display-4">당신은 <span class="text-info"><%= result %></span>입니다.</div>
+		<p class="mt-3">
+			BMI 수치: <%= bmi %>
+		</p>
 	</div>
 	
 </body>

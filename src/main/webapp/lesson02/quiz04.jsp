@@ -18,28 +18,28 @@
 		<form method="post" action="/lesson02/quiz04_1.jsp">
 			<div class="form-group">
 				<div class="d-flex w-100">
-					<input type="text" class="form-control col-4" name="number"> <span class="mt-3 mx-2"> cm</span>
+					<input type="text" class="form-control col-5" name="number"> <span class="mt-3 mx-2"> cm</span>
 				</div>
 				<div class="form-check d-flex p-0">
-					<div class="mx-1">
+					<div class="mr-3">
 						<label for="checkInch">인치</label>
-						<input type="checkbox" id="checkInch" name="checkInch">
+						<input type="checkbox" id="checkInch" name="standardUnit" value="inch">
 					</div>
-					<div class="mx-1"> 
+					<div class="mr-3"> 
 						<label for="checkYard">야드</label>
-						<input type="checkbox" id="checkYard" name="checkYard">
+						<input type="checkbox" id="checkYard" name="standardUnit" value="yard">
 					</div>
-					<div class="mx-1">
+					<div class="mr-3">
 						<label for="checkFeet">피트</label>
-						<input type="checkbox" id="checkFeet" name="checkFeet">
+						<input type="checkbox" id="checkFeet" name="standardUnit" value="feet">
 					</div>
-					<div class="mx-1">
+					<div class="mr-3">
 						<label for="checkMeter">미터</label>
-						<input type="checkbox" id="checkMeter" name="checkMeter">
+						<input type="checkbox" id="checkMeter" name="standardUnit" value="meter">
 					</div>
 				</div>
 				<div>
-				<button type="submit" class="btn btn-success">변환하기</button>
+					<button type="submit" class="btn btn-success">변환하기</button>
 				</div>
 			</div>
 		</form>
