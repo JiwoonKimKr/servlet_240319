@@ -16,11 +16,32 @@
 		String number1st = request.getParameter("number1st");
 		String operator = request.getParameter("operator");
 		String number2nd = request.getParameter("number2nd");
-	
+		if(number1st == "" || number2nd == "" || number1st.matches("[+-]?\\d*(\\.\\d+)?") == false || number2nd.matches("[+-]?\\d*(\\.\\d+)?") == false){
+	    	response.sendRedirect("/lesson02/quiz05.jsp");
+	    	return;
+	    }
+		
 		String result = null;
 
-		result = number1st + operator + number2nd;
+		result = number1st + " " + operator + " " + number2nd;
+		
+		double answer = 0;
+		if(operator.equals("+")){
+			answer = Integer.parseInt(number1st) + Integer.parseInt(number2nd);
+		}
+		if(operator.equals("-")){
+			answer = Integer.parseInt(number1st) - Integer.parseInt(number2nd);
+		}
+		if(operator.equals("x")){
+			answer = Integer.parseInt(number1st) * Integer.parseInt(number2nd);
+		}
+		if(operator.equals("÷")){
+			answer = Integer.parseInt(number1st) / Integer.parseInt(number2nd);
+		}
 	%>
-	<h1><%= Integer.parseInt(number1st) %></h1>
+	<div class="container">
+		<h3>계산 결과</h3>
+		<p class="display-4"><%= result + " = "%> <span class="text-primary"><%= answer %></span></p>
+	</div>
 </body>
 </html>

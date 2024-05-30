@@ -27,7 +27,7 @@
 			    </select>
 	
 				<input type="text" name="number2nd" class="form-control col-3">
-			    <button type="submit" class="btn btn-primary col-2">계산하기</button>
+			    <button type="submit" class="btn btn-primary col-2 ml-2">계산하기</button>
 		  	</div>
 	  	</form>
   	</div>
