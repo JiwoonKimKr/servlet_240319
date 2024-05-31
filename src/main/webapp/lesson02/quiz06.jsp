@@ -18,24 +18,32 @@
 		    "저지방 우유", "요플레 4개", "딸기 1팩", "삼겹살 300g", "생수 6개", "주방 세제"
 		});
 	%>
-	<p class="text-center display-4">장보기 목록</p]>
+	<p class="text-center display-4">장보기 목록</p>
 	<table class="table text-center">
 		<thead>
 		    <tr>
 		      <th scope="col">번호</th>
 		      <th scope="col">품목</th>
 		    </tr>
+		</thead>
 		<tbody>
 			<%
-				for (int i = 0; i < goodsList.size(); i ++){%>
+				for (int i = 0; i < goodsList.size(); i ++){
+					//개발자가 하는 일이 이렇게 서버 DB에서 값을 꺼내와서 for문으로 표현하는 일들!
 					
-						<%="<tr><td>" + (i + 1) + "</td>" %>
-						<%="<td>" + goodsList.get(i) + "</td></tr>"%>
-					 <%
+					//중괄호의 사용법을 유의해야
+					//칸 번호를 바꿔서 접근하지 말고, 인덱스에 하나를 더 하는 것으로 표현해야
+						//하지만 i++로 기재하면 1을 더한 값을 저장까지 하기 때문에 X
+			%>
+				<tr>
+					<td><%=(i + 1) %></td>	
+					<td><%=goodsList.get(i)%></td>	
+				</tr>
+			<%
 				}
 			%>
 		</tbody>
-  		</thead>
+  		
 	</table>
 	</div>
 </body>

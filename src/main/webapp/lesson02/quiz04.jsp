@@ -17,10 +17,11 @@
 		<h1>길이 변환</h1>
 		<form method="post" action="/lesson02/quiz04_1.jsp">
 			<div class="form-group">
-				<div class="d-flex w-100">
-					<input type="text" class="form-control col-5" name="number"> <span class="mt-3 mx-2"> cm</span>
+				<div class="d-flex align-items-end w-100">
+					<input type="text" class="form-control col-5" name="number">
+					<span class="ml-2"> cm</span>
 				</div>
-				<div class="form-check d-flex p-0">
+				<div class="form-check d-flex p-0 mt-2">
 					<div class="mr-3">
 						<label for="checkInch">인치</label>
 						<input type="checkbox" id="checkInch" name="standardUnit" value="inch">
@@ -38,9 +39,7 @@
 						<input type="checkbox" id="checkMeter" name="standardUnit" value="meter">
 					</div>
 				</div>
-				<div>
-					<button type="submit" class="btn btn-success">변환하기</button>
-				</div>
+				<button type="submit" class="btn btn-success">변환하기</button>
 			</div>
 		</form>
 	</div>

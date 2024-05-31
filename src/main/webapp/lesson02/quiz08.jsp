@@ -4,8 +4,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>배탈의 민족</title>
-
+	<title>교포문고</title>
+	<%@ include file="/lesson02/quiz08_bookList.jsp"  %>
+	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -13,17 +14,34 @@
 </head>
 <body>
 	<div class="container">
-		<h1>메뉴 검색</h1>
-		<form method="post" action="/lesson02/quiz07_1.jsp">
-			<div class="form-group d-flex align-items-center">
-				<input type="text" name="menu" class="form-control mr-3 col-6">
-				<div class="form-check m-0">
-					<input type="checkbox" id="excludeUnder4" name="excludeUnder4" class="form-check-input" value="true">
-					<label for="excludeUnder4" class="form-check-label">4점 이하 제외</label>
-				</div>
-			</div> 
-			<button type="submit" class="btn btn-success">검색</button>
-		</form>
+		<p class="display-4 text-center">책 목록</p>
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th scope="col" class="col-3">id</th>
+					<th scope="col" class="col-3">표지</th>
+					<th scope="col" class="col-6">제목</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					for (Map<String, Object> book : list){
+						String idBook = book.get("id").toString();
+						String urlImage = book.get("image").toString();
+						String title = book.get("title").toString();
+				%>
+				<tr>
+					<td><%= idBook%></td>
+					<td><img src="<%= urlImage%>" class="w-100" alt="image-of-a-book"></td>
+					<td><a href="/lesson02/quiz08_1.jsp?id=<%=idBook%>"><%= title%></a></td>
+				</tr>
+				<% 
+					}
+				%>
+			</tbody>
+		</table>
+		
 	</div>
+
 </body>
 </html>

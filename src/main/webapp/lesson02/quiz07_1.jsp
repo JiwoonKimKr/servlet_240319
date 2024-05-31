@@ -13,6 +13,12 @@
 </head>
 <body>
 	<%
+		//이 Map 하나 하나가 DB에서 꺼내오는 Record와 똑같은 형태이다.
+		
+		//필터링 조건은 나중에 넣어보는 접근으로 단계별로 구현해보기
+		//에러 발생할 경우 에러메시지 타입 잘 체크해보기
+		
+		//반대로 데이터 형태를 보고 어떤 자료구조로 데이터를 넣을 수 있을까 반대 방향도 고민해보기
 		List<Map<String, Object>> list = new ArrayList<>();
 	    Map<String, Object> map = new HashMap<String, Object>() {{ put("name", "버거킹"); put("menu", "햄버거"); put("point", 4.3); } };
 	    list.add(map);
@@ -28,8 +34,6 @@
 	    list.add(map);
 	    map = new HashMap<String, Object>() {{ put("name", "반올림피자"); put("menu", "피자"); put("point", 4.3); } };
 	    list.add(map);
-	    
-	    //out.print(list);
 	%>
 	<%
 		String menu = request.getParameter("menu");
@@ -43,8 +47,6 @@
 		if(request.getParameter("excludeUnder4") != null){
 			isOver4 = true;
 		}
-		//out.print(isOver4);
-		
 		menu = menu.trim();
 	%>
 	<div class="container">
@@ -57,23 +59,27 @@
 					<th scope="col">별점</th>
 				</tr>
 			</thead>
-			<tbody><%
+			<tbody>
+				<%
+				//Map의 value가 Object인 이유는 <string>말고도 소수점의 숫자값 등도 넣기 위해서;
 				for(Map<String, Object> dish : list){
-					if(dish.get("menu").equals(menu)){
-						if(isOver4){
-							double point = (double)dish.get("point");
-							if(point <= 4.0){
-								continue;
-							}
+					//필터링 조건들 기재
+					if(dish.get("menu").equals(menu) == false){
+						continue;
+					}
+					if(isOver4){
+						double point = (double)dish.get("point");
+						if(point <= 4.0){
+							continue;
 						}
-			
-				%><tr>
+					}
+				%>
+				<tr>
 					<td><%= menu %></td>
 					<td><%= dish.get("name") %></td>
 					<td><%= dish.get("point") %></td>
-				</tr><%
-				%><%
-					}
+				</tr>
+				<%
 				}
 				%>
 			</tbody>
