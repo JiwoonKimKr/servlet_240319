@@ -32,7 +32,7 @@
 				%>
 				<tr>
 					<td><%= idBook%></td>
-					<td><img src="<%= urlImage%>" class="w-100" alt="image-of-a-book"></td>
+					<td><a href="/lesson02/quiz08_1.jsp?id=<%=idBook%>"><img src="<%= urlImage%>" class="w-100" alt="image-of-a-book"></a></td>
 					<td><a href="/lesson02/quiz08_1.jsp?id=<%=idBook%>"><%= title%></a></td>
 				</tr>
 				<% 
