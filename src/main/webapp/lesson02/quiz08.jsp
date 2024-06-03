@@ -14,34 +14,39 @@
 </head>
 <body>
 	<div class="container">
-		<p class="display-4 text-center">책 목록</p>
+		<p class="h2 text-center py-2">책 목록</p>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th scope="col" class="col-3">id</th>
-					<th scope="col" class="col-3">표지</th>
-					<th scope="col" class="col-6">제목</th>
+					<th scope="col" class="col-2">id</th>
+					<th scope="col" class="col-2">표지</th>
+					<th scope="col" class="col-8">제목</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
 					for (Map<String, Object> book : list){
-						String idBook = book.get("id").toString();
-						String urlImage = book.get("image").toString();
-						String title = book.get("title").toString();
 				%>
 				<tr>
-					<td><%= idBook%></td>
-					<td><a href="/lesson02/quiz08_1.jsp?id=<%=idBook%>"><img src="<%= urlImage%>" class="w-100" alt="image-of-a-book"></a></td>
-					<td><a href="/lesson02/quiz08_1.jsp?id=<%=idBook%>"><%= title%></a></td>
+					<td class="align-middle">
+						<%= book.get("id")%>
+					</td>
+					<td class="align-middle">
+						<a href="/lesson02/quiz08_1.jsp?id=<%= book.get("id")%>">
+							<img src="<%= book.get("image")%>" class="w-100" alt="cover-image-of-a-book">
+						</a>
+					</td>
+					<td class="align-middle">
+						<a href="/lesson02/quiz08_1.jsp?id=<%= book.get("id")%>">
+							<%= book.get("title")%>
+						</a>
+					</td>
 				</tr>
 				<% 
 					}
 				%>
 			</tbody>
 		</table>
-		
 	</div>
-
 </body>
 </html>

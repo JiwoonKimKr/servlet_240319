@@ -53,14 +53,16 @@
 	    map = new HashMap<String, String>() {{ put("ch", "121"); put("name", "KBSN 스포츠"); put("category", "스포츠"); } };
 	    list.add(map);
 	%>
-	<div class="container">
+	<div id="wrap" class="container">
 		<header>
-			<a href="/lesson02/quiz09.jsp" class="text-decoration-none">
-				<p class="h2 font-weight-bolder text-danger text-center">SK Broadband IPTV</p>
-			</a>
+			<div class="title text-center my-0 py-3">
+				<a href="/lesson02/quiz09.jsp" class="h3 text-decoration-none font-weight-bolder text-danger">
+					SK Broadband IPTV
+				</a>
+			</div>
 		</header>
-		<nav class="category">
-			<ul class="nav bg-danger text-center justify-content-around">
+		<nav class="category bg-danger">
+			<ul class="nav nav-fill text-center justify-content-around">
 				<li class="nav-item">
 					<a class="nav-link text-light" href="/lesson02/quiz09.jsp?category=전체">전체</a>
 				</li>
@@ -81,52 +83,51 @@
 				</li>
 			</ul>
 		</nav>
-		<div class="contents">
-			<table class="table table-hover text-center">
-				<thead>
-					<tr class="">
-						<th scope="col" class="col-2">채널</th>
-						<th scope="col" class="col-5">채널명</th>
-						<th scope="col" class="col-5">카테고리</th>
-					</tr>
-				</thead>
-				<tbody>
-				<%
-					//request param
-					String category = null;
-					boolean hasFilter = false;
-					if(request.getParameter("category") != null){
-
-						category = request.getParameter("category");
-						if(category.equals("전체") == false){
-							hasFilter = true;
+		<section class="contents">
+			<article class="tableChannels">
+				<table class="table table-hover text-center">
+					<thead>
+						<tr>
+							<th scope="col" class="col-2">채널</th>
+							<th scope="col" class="col-5">채널명</th>
+							<th scope="col" class="col-5">카테고리</th>
+						</tr>
+					</thead>
+					<tbody>
+					<%
+						//request param
+						String category = null;
+						boolean hasFilter = false;
+						if(request.getParameter("category") != null){
+							category = request.getParameter("category");
+							
+							//카테고리에 '전체'를 선택하면 필터링 스킵
+							if(category.equals("전체") == false){
+								hasFilter = true;
+							}
 						}
-					}
-				
-					String idxCh = null;
-					String nameCh = null;
-					String catCh = null;
-					for (Map<String, String> channel : list){
-						if(hasFilter && channel.get("category").equals(category) == false){
-							continue;
+						for (Map<String, String> channel : list){
+							if(hasFilter && channel.get("category").equals(category) == false){
+								continue;
+							}
+					%>
+						<tr>
+							<th scope="row"><%= channel.get("ch") %></th>
+							<td><%= channel.get("name") %></td>
+							<td><%= channel.get("category") %></td>
+						</tr>
+					<%	
 						}
-				%>
-				<%
-						idxCh = channel.get("ch");
-						nameCh = channel.get("name");
-						catCh = channel.get("category");
-				%>
-					<tr>
-						<th scope="row"><%= idxCh %></th>
-						<td><%= nameCh %></td>
-						<td><%= catCh %></td>
-					</tr>
-				<%	
-					}
-				%>
-				</tbody>
-			</table>
-		</div>
+					%>
+					</tbody>
+				</table>
+			</article>
+		</section>
+		<footer class="mt-3">
+			<address>
+				<p class="text-secondary text-center">Copyright 2024. marondal All Rights Reserved.</p>
+			</address>
+		</footer>
 	</div>
 </body>
 </html>

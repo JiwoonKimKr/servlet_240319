@@ -36,18 +36,19 @@
 	    list.add(map);
 	%>
 	<%
-		String menu = request.getParameter("menu");
+		String menu = request.getParameter("keyword");
 		if(menu == ""){
 	    	response.sendRedirect("/lesson02/quiz07.jsp");
 	    	return;
 		}
-		
-		boolean isOver4 = false;
-		
-		if(request.getParameter("excludeUnder4") != null){
-			isOver4 = true;
-		}
 		menu = menu.trim();
+		
+		//4.0이상 체크박스 Flag ; 기본값이 false여서 체크 되면 필터링해서 4.0이하 값 출력 안 함
+			//checkbox의 parameter는 체크가 되어 있으면, "true"라는 <String>으로 넘어옴
+				//하지만 체크가 안 되어 있으면, 그냥 null 값으로 기재되어 있다.
+		boolean excludeUnder4 = request.getParameter("excludeUnder4") != null;
+			//그냥 변수 설정 안하고, excludeUnder4라는 <String>이 null값이 아닌지 추후 체크하는 것도 괜찮다;
+
 	%>
 	<div class="container">
 		<p class="text-center display-3">검색 결과</p>
@@ -64,14 +65,20 @@
 				//Map의 value가 Object인 이유는 <string>말고도 소수점의 숫자값 등도 넣기 위해서;
 				for(Map<String, Object> dish : list){
 					//필터링 조건들 기재
+						//태그들 안에 else if문을 덕지덕지 붙이면 너무 지저분하다!
+						//필터링 조건들을 continue문을 활용해서 skip하는 방식으로
 					if(dish.get("menu").equals(menu) == false){
 						continue;
 					}
-					if(isOver4){
-						double point = (double)dish.get("point");
-						if(point <= 4.0){
-							continue;
-						}
+					if(excludeUnder4 && (double)dish.get("point") <= 4.0){
+						//dish.get("point")가 object 타입으로 저장되어 있는 탓에 오류가 발생한다!
+							//그래서 double형으로 캐스팅이 필요하다!
+							//이번에는 String값을 double로 바꾸는 게 아니라서, parsing이 아니다!
+					
+						//JAVA는 데이터가 입력될 때 Object 클래스로 Upcasting이 되기 전, 기존 데이터 형태를 알고 있다!
+							//원래 double형이라는 걸 알고 있다!
+							
+						continue; //안 뿌리고 skip!
 					}
 				%>
 				<tr>

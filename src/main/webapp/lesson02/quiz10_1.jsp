@@ -48,6 +48,7 @@
 						if(title.isBlank()){
 							response.sendRedirect("/lesson02/quiz10.jsp");
 						}
+						title = title.trim();
 					
 						for(Map<String, Object> song: musicList){
 							if(song.get("title").equals(title) == false){

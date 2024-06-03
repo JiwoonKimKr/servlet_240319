@@ -14,32 +14,40 @@
 </head>
 <body>
 	<div class="container">
-		<div class="contents d-flex">	
+		<div class="contents d-flex pt-2">	
 	<%
 		int idBook = Integer.parseInt(request.getParameter("id"));
+		
+		//보여줄 책 정보 뽑아내기
+			//아예 Map을 뽑아서 변수로 저장한 후에 태그로 뿌리면, 조금 더 가독성이 좋아질 수 있다.
 	
+		Map<String, Object> target = null;
+			
 		for(Map<String, Object> book : list){
-			int idCur = Integer.parseInt(book.get("id").toString());
-			if(idCur == idBook){
-				String urlImage = book.get("image").toString();
-				String title = book.get("title").toString();
-				String author = book.get("author").toString();
-				String publisher = book.get("publisher").toString();
-	%>
-			<div class="col-4">
-				<img src="<%= urlImage %>" class="w-100 img-thumbnail" alt="image-of-a-book">
-			</div>
-			<div class="col-8">
-				<p class="h1 mb-0"><%= title %></p>
-				<p class="text-info h2 mt-0 mb-0"><%=author %></p>
-				<p class="text-secondary h3 mt-0"><%=publisher %></p>
-			</div>
-	<%				
+			if((int) book.get("id") == idBook){
+				//int형이던 Integer class이던 "=="이란 문법으로 비교 가능하다!
+						//그런데 현재는 Object type으로 Upcasting된 상황이다; 그래서 (int)붙여서 Downcasting을 해야
+				target = book;
+				break;
+				//찾은 후 바로 for문을 나가면 훨씬 효율적이다.
+					//id는 애초에 Primary Key인 탓에 겹치는 값이 아예 없다!
 			}
 		}
+		//out.print(target) //Map의 값을 얻어냈다는 것 자체가 이제 View파일의 태그만 구성하면 끝이라는 뜻!
+
+	%>
+			<div class="col-6 pr-1">
+				<img src="<%= target.get("image")%>" class="w-100 img-thumbnail" alt="cover-image-of-a-book">
+			</div>
+			<div class="col-6 pl-1">
+				<div class="display-1 py-1 text-weight-bold"><%= target.get("title")%></div>
+				<div class="display-3 text-info mb-1"><%= target.get("author")%></div>
+				<div class="display-4 text-secondary"><%= target.get("publisher")%></div>
+			</div>
+	<%				
+
 	%>		
 		</div>
 	</div>
-
 </body>
 </html>
