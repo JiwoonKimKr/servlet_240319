@@ -21,11 +21,11 @@
 				<div class="my-3" >
 					<span class="h1 text-center text-success">Melong</span>
 				</div>
-				<form method="get" action="/lesson02/quiz10_1.jsp">
+				<form method="post" action="/lesson02/quiz10_info.jsp">
 					<div class="input-group align-middle pl-3">
-						<input type="text" name="title" class="form-control" placeholder="노래 검색하기">
+						<input type="text" name="keyword" class="form-control" placeholder="노래 검색하기">
 						<div class="input-group-append">
-							<button type="Submit" class="btn btn-success" id="button-addon2">검색</button>
+							<button type="Submit" class="btn btn-info" id="button-addon2">검색</button>
 						</div>
 					</div>
 				</form>
@@ -42,19 +42,12 @@
 		</nav>
 		<section class="contents">
 			<article id="article-Upside" class="border border-success rounded">
-				<div class="d-flex w-100 align-items-center">
-					<%
-						String urlImg = artistInfo.get("photo").toString();
-					
-						String nameArtist = artistInfo.get("name").toString();
-						String agency = artistInfo.get("agency").toString();
-						String debute = artistInfo.get("debute").toString();
-					%>
-					<img id=imgThumbnail class="p-2" src=<%= urlImg %> alt= "image-of-artist">
-					<div class="h-100 p-2">
-						<p class="h2"><%= nameArtist %></p>
-						<p class="h5"><%= agency %></p>
-						<p class="h5"><%=	debute %>데뷔</p>
+				<div class="d-flex w-100 p-2">
+					<img id=imgThumbnail class="p-2 my-auto" src=<%= artistInfo.get("photo").toString() %> alt= "image-of-artist">
+					<div class="h-100 p-3">
+						<p class="h2 py-2 font-weight-bolder"><%= artistInfo.get("name").toString() %></p>
+						<p class="h6"><%= artistInfo.get("agency").toString() %></p>
+						<p class="h6"><%= artistInfo.get("debute").toString() + " 데뷔" %></p>
 					</div>
 				</div>
 			</article>
@@ -73,7 +66,7 @@
 						%>
 						<tr>
 						<td><%= i + 1 %></td>
-						<td><a href="/lesson02/quiz10_1.jsp?id=<%=song.get("id")%>"><%= song.get("title") %></a></td>
+						<td><a href="/lesson02/quiz10_info.jsp?id=<%=song.get("id")%>"><%= song.get("title") %></a></td>
 						<td><%= song.get("album") %></td>
 						</tr>
 						<% 
@@ -85,7 +78,7 @@
 		</section>
 		<footer>
 			<address>
-				<small>Copyright 2024. melong All Rights Reserved.</small>
+				<small class="text-secondary">Copyright 2024. melong All Rights Reserved.</small>
 			</address>
 		</footer>
 	</div>

@@ -64,7 +64,7 @@
 		<nav class="category bg-danger">
 			<ul class="nav nav-fill text-center justify-content-around">
 				<li class="nav-item">
-					<a class="nav-link text-light" href="/lesson02/quiz09.jsp?category=전체">전체</a>
+					<a class="nav-link text-light" href="/lesson02/quiz09.jsp">전체</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-light" href="/lesson02/quiz09.jsp?category=지상파">지상파</a>
@@ -97,17 +97,12 @@
 					<%
 						//request param
 						String category = null;
-						boolean hasFilter = false;
 						if(request.getParameter("category") != null){
 							category = request.getParameter("category");
-							
-							//카테고리에 '전체'를 선택하면 필터링 스킵
-							if(category.equals("전체") == false){
-								hasFilter = true;
-							}
 						}
 						for (Map<String, String> channel : list){
-							if(hasFilter && channel.get("category").equals(category) == false){
+							//category가 null이거나, category 값이 일치할 경우에 출력한다!
+							if(category != null && channel.get("category").equals(category) == false){
 								continue;
 							}
 					%>

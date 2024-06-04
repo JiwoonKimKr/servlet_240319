@@ -42,78 +42,60 @@
 		</nav>
 		<section class="contents">
 			<article id="article-Upside" class="border border-success rounded">
-				<div class="d-none d-flex w-100 align-items-center">
+				<div class="d-flex w-100 align-items-center">
 					<%
-						String titleSong = null; 
-						if(request.getParameter("title") != null){
-							titleSong = request.getParameter("title").trim();
-						}
-						
-						Integer idSong = null;
-						if(request.getParameter("id") != null){
-							idSong = Integer.parseInt(request.getParameter("id"));
-						}
-						
-						if(titleSong == null && idSong == null){
-							response.sendRedirect("/lesson02/quiz10.jsp");
-						}
-						
 						Map<String, Object> songCur = null;
-					
-						for(Map<String, Object> song: musicList){
-							if(song.get("title").equals(titleSong) || song.get("id") == idSong){
-								songCur = song;
-								break;
+						
+						//여러 곡이 나올 경우도 존재하지만 이번 풀이에서는 생략
+						if(request.getParameter("keyword") != null && request.getParameter("keyword").trim().isEmpty() == false){
+							String keyword = request.getParameter("keyword").trim();
+							for(Map<String, Object> song: musicList){
+								if(song.get("title").toString().contains(keyword)){
+									songCur = song;
+									break;
+								}
+							}
+						} else if (request.getParameter("id") != null){
+							int idSong = Integer.parseInt(request.getParameter("id")); //역시 다운케스팅 필요
+							for(Map<String, Object> song: musicList){
+								if((int) song.get("id") == idSong){
+									songCur = song;
+									break;
+								}
 							}
 						}
-							
-						String urlImg = songCur.get("thumbnail").toString();
-					
-						if(titleSong == null){
-							titleSong = songCur.get("title").toString();
-						}
-						String singer = songCur.get("singer").toString();
-						String album = songCur.get("album").toString();
-						int playingTime = Integer.parseInt(songCur.get("time").toString());
-						int minute = playingTime / 60;
-						int seconds = playingTime % 60;
 						
-						String composer = songCur.get("composer").toString();
-						String lyricist = songCur.get("lyricist").toString();
+						if(songCur == null){
+							response.sendRedirect("/lesson02/quiz10.jsp");
+							return;
+						}
 					%>
-					<img id=imgThumbnail class="p-2" src=<%= urlImg %> alt= "image-of-single">
+					<img id=imgThumbnail class="p-2" src=<%= songCur.get("thumbnail").toString() %> alt= "image-of-single">
 
 					<div class="h-100 p-2 flex-column justify-content-center">
-						<p class="h3 text-secondary"><%= titleSong %></p>
-						<p class="h5 text-success m-0 pb-2 font-weight-bolder"><%= singer %></p>					
-						<table class="p-0 tableSong">
-							<tbody class="text-secondary">
-								<tr>
-									<td >앨범</td>
-									<td class="pl-4"><%= album %></td>
-								</tr>
-								<tr>
-									<td>재생시간</td>
-									<td class="pl-4"><%= minute + ":" + seconds %></td>
-								</tr>
-								<tr>
-									<td>작곡가</td>
-									<td class="pl-4"><%= composer %></td>
-								</tr>
-								<tr>
-									<td>작사가</td>
-									<td class="pl-4"><%= lyricist %></td>
-								</tr>
-							</tbody>
-						</table>
+						<p class="display-4 mb-0 text-secondary"><%= songCur.get("title").toString() %></p>
+						<p class="h5 text-success m-0 pb-2 font-weight-bolder"><%= songCur.get("singer").toString() %></p>
+						<div class="d-flex text-secondary">
+							<div>
+								<div class="detailSong">앨범</div>
+								<div class="detailSong">재생시간</div>
+								<div class="detailSong">작곡가</div>
+								<div class="detailSong">작사가</div>
+							</div>
+							<div class="ml-4">
+								<div class="detailSong"><%= songCur.get("album").toString() %></div>
+								<div class="detailSong"><%= (int) songCur.get("time") / 60 + ":" + (int) songCur.get("time") % 60 %></div>
+								<div class="detailSong"><%= songCur.get("composer").toString() %></div>
+								<div class="detailSong"><%= songCur.get("lyricist").toString() %></div>
+							</div>
+						</div>					
 					</div>
 				</div>
 			</article>
 			<article id="article-Downside" class="pt-4">
 				<p class="h4 text-weight-bold">가사</p>
 				<hr>
-				<P>가사 정보 없음</p>
-				
+				<p>가사 정보 없음</p>
 			</article>
 		</section>
 		<footer>
