@@ -70,25 +70,22 @@
 						<%
 							for(int i = 0; i < musicList.size(); i ++){
 								Map<String, Object> song = musicList.get(i);
-								String titleSong = song.get("title").toString();
-								String albumSong = song.get("album").toString();
-								%>
+						%>
 						<tr>
 						<td><%= i + 1 %></td>
-						<td><a href="/lesson02/quiz10_1.jsp?title=<%=titleSong%>"><%= titleSong %></a></td>
-						<td><%= albumSong %></td>
+						<td><a href="/lesson02/quiz10_1.jsp?id=<%=song.get("id")%>"><%= song.get("title") %></a></td>
+						<td><%= song.get("album") %></td>
 						</tr>
-								<% 
+						<% 
 							}
 						%>
 					</tbody>
 				</table>
-				
 			</article>
 		</section>
 		<footer>
 			<address>
-				<small>Copyright 2021. melong All Rights Reserved.</small>
+				<small>Copyright 2024. melong All Rights Reserved.</small>
 			</address>
 		</footer>
 	</div>

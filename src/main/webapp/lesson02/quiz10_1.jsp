@@ -44,34 +44,47 @@
 			<article id="article-Upside" class="border border-success rounded">
 				<div class="d-none d-flex w-100 align-items-center">
 					<%
-						String title = request.getParameter("title");
-						if(title.isBlank()){
+						String titleSong = null; 
+						if(request.getParameter("title") != null){
+							titleSong = request.getParameter("title").trim();
+						}
+						
+						Integer idSong = null;
+						if(request.getParameter("id") != null){
+							idSong = Integer.parseInt(request.getParameter("id"));
+						}
+						
+						if(titleSong == null && idSong == null){
 							response.sendRedirect("/lesson02/quiz10.jsp");
 						}
-						title = title.trim();
+						
+						Map<String, Object> songCur = null;
 					
 						for(Map<String, Object> song: musicList){
-							if(song.get("title").equals(title) == false){
-								continue;
+							if(song.get("title").equals(titleSong) || song.get("id") == idSong){
+								songCur = song;
+								break;
 							}
-								
+						}
 							
-							String urlImg = song.get("thumbnail").toString();
+						String urlImg = songCur.get("thumbnail").toString();
+					
+						if(titleSong == null){
+							titleSong = songCur.get("title").toString();
+						}
+						String singer = songCur.get("singer").toString();
+						String album = songCur.get("album").toString();
+						int playingTime = Integer.parseInt(songCur.get("time").toString());
+						int minute = playingTime / 60;
+						int seconds = playingTime % 60;
 						
-							//String title = song.get("title").toString();
-							String singer = song.get("singer").toString();
-							String album = song.get("album").toString();
-							int playingTime = Integer.parseInt(song.get("time").toString());
-							int minute = playingTime / 60;
-							int seconds = playingTime % 60;
-							
-							String composer = song.get("composer").toString();
-							String lyricist = song.get("lyricist").toString();
+						String composer = songCur.get("composer").toString();
+						String lyricist = songCur.get("lyricist").toString();
 					%>
 					<img id=imgThumbnail class="p-2" src=<%= urlImg %> alt= "image-of-single">
 
 					<div class="h-100 p-2 flex-column justify-content-center">
-						<p class="h3 text-secondary"><%= title %></p>
+						<p class="h3 text-secondary"><%= titleSong %></p>
 						<p class="h5 text-success m-0 pb-2 font-weight-bolder"><%= singer %></p>					
 						<table class="p-0 tableSong">
 							<tbody class="text-secondary">
@@ -94,10 +107,6 @@
 							</tbody>
 						</table>
 					</div>
-					
-					<%
-						}					
-					%>
 				</div>
 			</article>
 			<article id="article-Downside" class="pt-4">
@@ -109,7 +118,7 @@
 		</section>
 		<footer>
 			<address>
-				<small>Copyright 2021. melong All Rights Reserved.</small>
+				<small>Copyright 2024. melong All Rights Reserved.</small>
 			</address>
 		</footer>
 	</div>
