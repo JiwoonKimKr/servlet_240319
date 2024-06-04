@@ -21,7 +21,7 @@
 				<div class="my-3" >
 					<span class="h1 text-center text-success">Melong</span>
 				</div>
-				<form method="post" action="/lesson02/quiz10_info.jsp">
+				<form method="get" action="/lesson02/quiz10_info.jsp">
 					<div class="input-group align-middle pl-3">
 						<input type="text" name="keyword" class="form-control" placeholder="노래 검색하기">
 						<div class="input-group-append">
