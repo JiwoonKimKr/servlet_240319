@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#navMenu  {
+	height: 75px;
+	color: #FFF;
+}
+
+#navMenu > li > a {
+	color: #FFF;
+	font-size: 30px;	
+}
+#navMenu > li > a:hover {
+	font-weight: bolder;	
+}
