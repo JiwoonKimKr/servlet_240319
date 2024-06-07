@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="/lesson03/quiz03_style.css">
 </head>
 <body>
-	<div id="wrap" class="container">
+	<div id="wrap" class="mx-auto">
 		<header>
 			<jsp:include page="/lesson03/quiz03_header.jsp"></jsp:include>
 		</header>

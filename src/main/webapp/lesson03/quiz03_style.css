@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#wrap {
+	width: 690px;
+}
+
 .coralWhite {
 	background-color:coral;
 	color:#FFF;
@@ -9,7 +13,7 @@
 	color:coral;
 }
 
-#title{
+#titlePage{
 	height: 100px;
 }
 

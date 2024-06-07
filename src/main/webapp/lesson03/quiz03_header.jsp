@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="title" class="d-flex align-items-center justify-content-center coralWhite">
+<div id="titlePage" class="d-flex align-items-center justify-content-center coralWhite w-100">
 	<p class="h2 text-centermb-0">HONG당무마켓</p>
-</div>
+</div class="w-100">
 	<ul id="navMenu" class="nav nav-fill align-items-center coralWhite">
 	    <li class="nav-item col-4">
 	    	<a class="nav-link h4" href="/lesson03/quiz03_index.jsp">리스트</a>
