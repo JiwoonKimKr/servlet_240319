@@ -48,7 +48,7 @@
 					</div>
 					<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">
 						<p class="h6 font-weight-bolder mb-sm-1 w-100"><%= res.getString("title") %></p>
-						<p class="text-secondary mb-sm-1 w-100"><%= res.getString("price") %></p>
+						<p class="text-secondary mb-sm-1 w-100"><%= res.getString("price") +" 원" %></p>
 						<p class="coralText font-weight-bold mb-sm-1 w-100"><%= res.getString("nickname") %></p>
 					</div>
 				</article>

@@ -76,39 +76,44 @@
 	$(document).ready(function(){
 		
 		$("#submitForm").on('click', function(){
+			
 			let regEx = /^[0-9]*$/;
 			
-			if($('#sellerId').val() == "" && regEx.test($('#sellerId').val().trim()) == false ){
-				alert("사용자를 선택하여 주십시오.");
+			if($('#sellerId').val() == "-아이디 선택" || regEx.test($('#sellerId').val()) == false ){
+				alert("작성자를 선택하여 주십시오.");
 				return false;
 			}
-			let sellerId = $('#sellerId').val().trim();
 			
 			if($('#title').val() == ""){
 				alert("제목을 입력하여 주십시오.");
 				return false;
 			}
 			let title = $('#title').val().trim();
-			
+			$('#title').val(title);
 			
 			if($('#price').val() == "" || regEx.test($('#price').val().trim()) == false ){
 				alert("숫자로만 입력한, 올바른 가격을 입력하여 주십시오");
 				return false;
 			}
+			
 			let price = $('#price').val().trim();
+			$('#price').val(price);
 			
 			if($('#description').val() == ""){
 				alert("제품에 대한 설명을 기입하여 주십시오.");
 				return false;
 			}
 			let description = $('#description').val().trim();
+			$('#description').val(description);
 			
-			let regExpURL = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-			if(regExpURL.test($('pictureUrl').val().trim()) == false){
+			let RegExpURL = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+			if($('#pictureUrl').val().trim() != "" && RegExpURL.test($('#pictureUrl').val().trim()) == false){
 				alert("올바른 이미지 url을 입력하여 주십시오");
 				return false;
 			}
+			
 			let pictureUrl = $('pictureUrl').val().trim();
+			$('#pictureUrl').val(pictureUrl);
 			
 			return true;
 		})

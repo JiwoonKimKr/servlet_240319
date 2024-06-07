@@ -18,20 +18,27 @@ public class InsertQuiz03 extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		//request param
-		String title = request.getParameter("title");
 		int sellerId = Integer.parseInt(request.getParameter("sellerId")); 
+		String title = request.getParameter("title");
 		int price = Integer.parseInt(request.getParameter("price")); 
-		String nickname = request.getParameter("nickname"); 
-		String pictureUrl = request.getParameter("pictureUrl");
 		String description = request.getParameter("description");
+		String pictureUrl = "(null)"; 
+		if(request.getParameter("pictureUrl") != "" && request.getParameter("pictureUrl") != pictureUrl) {
+			pictureUrl = request.getParameter("pictureUrl");
+		};
 		
 		//db conn
 		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
 		
 		//insert query
-		String queryInsert1 = "";
-		String queryInsert2 = "INSERT INTO `used_goods` (`sellerId`, `title`, `description`, `price`) VALUES ("+ sellerId + ", '" + title +"', '"+ description + "', "+ price +");";
+		String queryInsert1 = "INSERT INTO `used_goods` (`sellerId`, `title`, `description`, `price`, `pictureUrl`) VALUES ("+ sellerId + ", " + title +", "+ description + ", "+ price +", "+ pictureUrl +")";
+
+		try {
+			ms.update(queryInsert1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		//db disconn
 		ms.disconnect();
