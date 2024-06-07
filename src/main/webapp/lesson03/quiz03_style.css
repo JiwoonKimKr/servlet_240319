@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.coralWhite {
+	background-color:coral;
+	color:#FFF;
+}
+
+#title{
+	height: 100px;
+}
+
+#navMenu {
+	height: 75px;
+}
+
+#navMenu a, a:hover {
+	color:#FFF;
+}
