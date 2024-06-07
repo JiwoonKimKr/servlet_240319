@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.test.common.MysqlService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,10 +33,47 @@
 			</ul>
 		</header>
 		<section class="contents">
-
-
+			<section class="pageForSell mt-4 d-flex flex-wrap mx-auto">
+<%
+		//db connect
+		MysqlService ms = MysqlService.getInstance();
+		ms.connect();
+		
+		//select query
+		String querySelect ="SELECT a.id, a.title, a.price, b.nickname, a.pictureUrl from used_goods as a join seller as b on a.sellerId = b.id;";
+		ResultSet res = ms.select(querySelect);
+		while(res.next()){
+%>
+				<article class="articleForSell rounded-lg">
+					<div class="m-1 row-8 w-100">
+<%
+		if(res.getString("pictureUrl") != null){
+%>
+						<img src="<%=res.getString("pictureUrl") %>" width="212" height="120">
+<%
+		} else{
+%>						<div class="nullImg d-flex align-items-center justify-content-center">
+							<p class="h4 text-center">이미지 없음</p>
+						</div>
+<%
+		}
+%>					
+					</div>
+					<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">
+						<p class="h6 font-weight-bolder mb-sm-1 w-100"><%= res.getString("title") %></p>
+						<p class="text-secondary mb-sm-1 w-100"><%= res.getString("price") %></p>
+						<p class="coralText mb-sm-1 w-100"><%= res.getString("nickname") %></p>
+					</div>
+				</article>
+<%				
+		}
+%>			
+			</section>
 		</section>
 	</div>
-
+<%
+	//db disconnet
+	ms.disconnect();
+%>
 </body>
 </html>
