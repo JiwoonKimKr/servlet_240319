@@ -34,7 +34,7 @@
 					<tbody class="">
 	<%
 		//select
-		String selectQuery = "select `name`, `url` from `portal_Favorite` order by `id` desc";
+		String selectQuery = "select `name`, `url` from `bookmark` order by `id` desc";
 		ResultSet res = ms.select(selectQuery);
 		
 		while(res.next()){

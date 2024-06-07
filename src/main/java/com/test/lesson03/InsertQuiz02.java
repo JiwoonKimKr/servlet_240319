@@ -38,7 +38,7 @@ public class InsertQuiz02 extends HttpServlet {
 		ms.connect();
 		
 		//
-		String insertQuery = "insert into `portal_favorite` (`name`, `url`) value ('"+ namePortal +"', '"+ urlPortal +"')" ; 
+		String insertQuery = "insert into `bookmark` (`name`, `url`) value ('"+ namePortal +"', '"+ urlPortal +"')" ; 
 		//System.out.println(insertQuery);
 		
 		try {
