@@ -32,6 +32,10 @@
 	height:	222px;
 }
 
+.articleForSell:hover{
+	background-color: #FCE2D3;
+}
+
 .nullImg{
 	width: 212px;
 	height: 120px;

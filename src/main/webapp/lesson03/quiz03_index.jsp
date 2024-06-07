@@ -17,20 +17,7 @@
 <body>
 	<div id="wrap" class="container">
 		<header>
-			<div id="title" class="d-flex align-items-center justify-content-center coralWhite">
-				<p class="h2 text-centermb-0">HONG당무마켓</p>
-			</div>
-				<ul id="navMenu" class="nav nav-fill align-items-center coralWhite">
-				    <li class="nav-item col-4">
-				    	<a class="nav-link h4" href="#">리스트</a>
-				    </li>
-				    <li class="nav-item col-4">
-				    	<a class="nav-link h4" href="#">물건 올리기</a>
-				    </li>
-				    <li class="nav-item col-4">
-				    	<a class="nav-link h4" href="#">마이페이지</a>
-				    </li>
-			</ul>
+			<jsp:include page="/lesson03/quiz03_header.jsp"></jsp:include>
 		</header>
 		<section class="contents">
 			<section class="pageForSell mt-4 d-flex flex-wrap mx-auto">
@@ -62,7 +49,7 @@
 					<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">
 						<p class="h6 font-weight-bolder mb-sm-1 w-100"><%= res.getString("title") %></p>
 						<p class="text-secondary mb-sm-1 w-100"><%= res.getString("price") %></p>
-						<p class="coralText mb-sm-1 w-100"><%= res.getString("nickname") %></p>
+						<p class="coralText font-weight-bold mb-sm-1 w-100"><%= res.getString("nickname") %></p>
 					</div>
 				</article>
 <%				
