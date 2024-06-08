@@ -22,7 +22,7 @@ public class InsertQuiz03 extends HttpServlet{
 		String title = request.getParameter("title");
 		int price = Integer.parseInt(request.getParameter("price")); 
 		String description = request.getParameter("description");
-		String pictureUrl = "(null)"; 
+		String pictureUrl = "null"; 
 		if(request.getParameter("pictureUrl") != "" && request.getParameter("pictureUrl") != pictureUrl) {
 			pictureUrl = request.getParameter("pictureUrl");
 		};
