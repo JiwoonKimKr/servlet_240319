@@ -27,14 +27,15 @@
 				<table class="table text-center">
 					<thead>
 						<tr>
-							<th class="col-4">사이트</th>
-							<th class="col-8">사이트 주소</th>
+							<th class="col-2">사이트</th>
+							<th class="col-7">사이트 주소</th>
+							<th class="col-3">삭제</th>
 						</tr>
 					</thead>
 					<tbody class="">
 	<%
 		//select
-		String selectQuery = "select `name`, `url` from `bookmark` order by `id` desc";
+		String selectQuery = "select `id`, `name`, `url` from `bookmark` order by `id` desc";
 		ResultSet res = ms.select(selectQuery);
 		
 		while(res.next()){
@@ -43,6 +44,7 @@
 						<tr>
 							<td><%= res.getString("name") %></td>
 							<td><a href="<%= res.getString("url") %>"><%= res.getString("url") %></a></td>
+							<td><a href="/lesson03/quiz02_delete?id=<%= res.getInt("id")%>"> 삭제하기</a></td>
 						</tr>
 	<%					
 		}

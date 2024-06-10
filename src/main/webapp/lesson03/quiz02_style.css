@@ -7,7 +7,8 @@
 
 #navMenu > li > a {
 	color: #FFF;
-	font-size: 30px;	
+	font-size: 16px;
+	font-weight:bolder;	
 }
 #navMenu > li > a:hover {
 	font-weight: bolder;	
