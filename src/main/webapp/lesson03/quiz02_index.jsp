@@ -44,7 +44,7 @@
 						<tr>
 							<td><%= res.getString("name") %></td>
 							<td><a href="<%= res.getString("url") %>"><%= res.getString("url") %></a></td>
-							<td><a href="/lesson03/quiz02_delete?id=<%= res.getInt("id")%>"> 삭제하기</a></td>
+							<td><a href="/lesson03/quiz02_delete?id=<%= res.getInt("id")%>" class="btn btn-danger"> DEL</a></td>
 						</tr>
 	<%					
 		}
@@ -55,9 +55,6 @@
 			</article>
 		</section>		
 	</div>
-	
-	
-	
 	<%
 		ms.connect();
 	%>

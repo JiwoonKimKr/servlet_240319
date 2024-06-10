@@ -20,7 +20,7 @@
 		<jsp:include page="/lesson03/quiz02_navMenu.jsp"></jsp:include>		
 		<section class="contents mt-4">
 			<p class="h2 text-success font-weight-bold mb-3">즐겨찾기 추가</p>
-			<form method="post" action="/lesson03/update">
+			<form method="post" action="/lesson03/quiz02_update">
 				<div class="form-group">
 					<div class="">
 						<label for="name" class="font-weight-bold">사이트명:</label>

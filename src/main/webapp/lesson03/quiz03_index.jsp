@@ -34,16 +34,16 @@
 				<article class="articleForSell rounded-lg">
 					<div class="m-1 row-8 w-100">
 <%
-		if(res.getString("pictureUrl") != null){
+			if(res.getString("pictureUrl") != null){
 %>
 						<img src="<%=res.getString("pictureUrl") %>" width="212" height="120">
 <%
-		} else{
+			} else{
 %>						<div class="nullImg d-flex align-items-center justify-content-center">
 							<p class="h4 text-center">이미지 없음</p>
 						</div>
 <%
-		}
+			}
 %>					
 					</div>
 					<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">

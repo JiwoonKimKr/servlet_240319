@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.test.common.MysqlService;
 
-@WebServlet("/lesson03/update")
+@WebServlet("/lesson03/quiz02_update")
 public class InsertQuiz02 extends HttpServlet {
 
 	@Override
@@ -50,6 +50,7 @@ public class InsertQuiz02 extends HttpServlet {
 		//DB 연결 해제
 		ms.disconnect();
 		
+		//302 Redirect로 list 브라우저에 뿌려주기
 		response.sendRedirect("/lesson03/quiz02_index.jsp");
 		return;
 	}
