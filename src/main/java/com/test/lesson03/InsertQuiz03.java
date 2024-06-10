@@ -24,7 +24,7 @@ public class InsertQuiz03 extends HttpServlet{
 		String description = request.getParameter("description");
 		String pictureUrl = "null"; 
 		if(request.getParameter("pictureUrl") != "" && request.getParameter("pictureUrl") != pictureUrl) {
-			pictureUrl = request.getParameter("pictureUrl");
+			pictureUrl = "'" + request.getParameter("pictureUrl") + "'";
 		};
 		
 		//db conn
@@ -32,7 +32,7 @@ public class InsertQuiz03 extends HttpServlet{
 		ms.connect();
 		
 		//insert query
-		String queryInsert1 = "INSERT INTO `used_goods` (`sellerId`, `title`, `description`, `price`, `pictureUrl`) VALUES ("+ sellerId + ", " + title +", "+ description + ", "+ price +", "+ pictureUrl +")";
+		String queryInsert1 = "INSERT INTO `used_goods` (`sellerId`, `title`, `description`, `price`, `pictureUrl`) VALUES ("+ sellerId + ", '" + title +"', '"+ description + "', "+ price +", "+ pictureUrl +")";
 
 		try {
 			ms.update(queryInsert1);
